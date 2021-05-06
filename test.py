@@ -1,10 +1,10 @@
 import unittest
 from soraman import auth
 
-class AuthTest(unittest.TestCase):
+class GlobalAuthTest(unittest.TestCase):
 
     def test_auth(self):
-        soraman = auth.soraman()
+        soraman = auth.global_soraman()
 
         soraman.auth()
 

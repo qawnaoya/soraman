@@ -1,6 +1,12 @@
 import urllib
 
 class soraman():
-    def auth(userName, password, authId, authSecret):
+    pass
+
+class global_soraman(soraman):
+    def auth(self, userName, password, opId, opSecret):
         pass
 
+class japan_soraman(soraman):
+    def auth(self, userName, password, opId, opSecret):
+        pass
