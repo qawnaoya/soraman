@@ -2,6 +2,8 @@ import urllib
 from soraman import exception
 
 class soraman():
+    API_ENDPOINT = None
+
     def authAsRoot(self, email, password):
         pass
 
@@ -41,9 +43,15 @@ class soraman():
             raise Exception()
 
 class global_soraman(soraman):
+    def __init__(self):
+        self.API_ENDPOINT = ''
+
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         super().auth(email, password, authKeyId, authKey, operatorId, userName)
 
 class japan_soraman(soraman):
+    def __init__(self):
+        self.API_ENDPOINT = ''
+
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         super().auth(email, password, authKeyId, authKey, operatorId, userName)
