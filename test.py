@@ -22,6 +22,12 @@ class GlobalAuthTest(unittest.TestCase):
         soraman = auth.global_soraman()
 
         print(soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey))
+    
+    def test_getsub(self):
+        soraman = auth.japan_soraman()
+
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
+        print(soraman.getSubscribers())
 
 if __name__ == "__main__":
     unittest.main()
