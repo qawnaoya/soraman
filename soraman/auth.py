@@ -1,4 +1,5 @@
 import urllib
+import json
 from soraman import exception
 
 ''' カバレッジタイプに依存しない認証を実装
@@ -10,7 +11,8 @@ class soraman():
     ''' ルートアカウントの認証を実装 '''
 
     def authAsRoot(self, email, password):
-        pass
+        reqObj = {'email': email, 'password': password}
+        reqDoc = json.dumps(reqObj)
 
     ''' SAMの認証を実装 '''
 
