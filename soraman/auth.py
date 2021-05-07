@@ -29,6 +29,7 @@ class soraman():
         except urllib.error.HTTPError as ex:
             print(ex)
             print(ex.filename)
+            print(ex.read())
             raise(ex)
 
     ''' ルートアカウントの認証を実装 '''
