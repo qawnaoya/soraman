@@ -17,14 +17,14 @@ class soraman():
             if(password):
                 self.authAsRoot(email, password)
             else:
-                raise Exception()
+                raise exception.ParameterException()
 
         # Auth Key
         elif(authKeyId):
             if(authKey):
                 self.authByAuthKey(authKeyId, authKey)
             else:
-                raise Exception()
+                raise exception.ParameterException()
 
         # SAM
         elif(operatorId):
@@ -32,9 +32,9 @@ class soraman():
                 if(password):
                     self.authAsSAM(operatorId, userName, password)
                 else:
-                    raise Exception()
+                    raise exception.ParameterException()
             else:
-                raise Exception()
+                raise exception.ParameterException()
 
         # else
         else:
