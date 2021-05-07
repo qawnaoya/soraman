@@ -8,9 +8,15 @@ from soraman import exception
 
 class soraman():
     API_ENDPOINT = None
+    logger = None
+
+    def __init__(self):
+        self.logger = logging.getLogger(__name__)
 
     def authRequest(self, reqDoc):
-        u = urllib.request.Request(self.API_ENDPOINT + '/auth', data = reqDoc, method = 'POST')
+        uri = self.API_ENDPOINT + '/auth'
+        self.logger.info('Request URI: %s', uri)
+        u = urllib.request.Request(uri, data = reqDoc, method = 'POST')
         with urllib.request.urlopen(u) as f:
             print(f.read())
 
@@ -67,6 +73,7 @@ class soraman():
 
 class global_soraman(soraman):
     def __init__(self):
+        super().__init__()
         self.API_ENDPOINT = 'https://g.api.soracom.io'
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
@@ -77,6 +84,7 @@ class global_soraman(soraman):
 
 class japan_soraman(soraman):
     def __init__(self):
+        super().__init__()
         self.API_ENDPOINT = 'https://jpn.api.soracom.io'
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
