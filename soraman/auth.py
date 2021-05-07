@@ -19,14 +19,14 @@ class soraman():
             else:
                 raise Exception()
 
-        # Root Account
+        # Auth Key
         elif(authKeyId):
             if(authKey):
                 self.authByAuthKey(authKeyId, authKey)
             else:
                 raise Exception()
 
-        # Root Account
+        # SAM
         elif(operatorId):
             if(userName):
                 if(password):

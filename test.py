@@ -3,11 +3,15 @@ from soraman import auth
 import configparser as cp
 
 class GlobalAuthTest(unittest.TestCase):
+    config = cp.ConfigParser()
+    config.read('soracom.config')
+    authKeyId = config['soracom']['authKeyId']
+    authKey = config['soracom']['authKey']
 
     def test_auth(self):
         soraman = auth.global_soraman()
 
-        soraman.auth()
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
 
 if __name__ == "__main__":
     unittest.main()
