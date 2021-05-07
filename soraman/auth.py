@@ -47,7 +47,16 @@ class soraman():
     ''' AuthKeyによる認証を実装 '''
 
     def authByAuthKey(self, authKeyId, authKey):
-        reqObj = {'authKeyId': authKeyId, 'authKey': authKey}
+        reqObj = {
+            'authKey': authKey,
+            'authKeyId': authKeyId,
+            'email': '',
+            'mfaOTPCode': '',
+            'operatorId': '',
+            'password': '',
+            'tokenTimeoutSeconds': 86400,
+            'userName': ''
+        }
         reqDoc = json.dumps(reqObj).encode('utf-8')
         self.authRequest(reqDoc)
 
