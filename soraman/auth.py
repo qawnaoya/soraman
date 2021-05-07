@@ -1,4 +1,5 @@
-import urllib
+import logging
+import urllib.request
 import json
 from soraman import exception
 
@@ -8,11 +9,17 @@ from soraman import exception
 class soraman():
     API_ENDPOINT = None
 
+    def authRequest(self, reqDoc):
+        u = urllib.request.Request(self.API_ENDPOINT + '/auth', data = reqDoc, method = 'POST')
+        with urllib.request.urlopen(u) as f:
+            print(f.read())
+
     ''' ルートアカウントの認証を実装 '''
 
     def authAsRoot(self, email, password):
         reqObj = {'email': email, 'password': password}
-        reqDoc = json.dumps(reqObj)
+        reqDoc = json.dumps(reqObj).encode('utf-8')
+        self.authRequest(reqDoc)
 
     ''' SAMの認証を実装 '''
 
@@ -21,9 +28,10 @@ class soraman():
 
     ''' AuthKeyによる認証を実装 '''
 
-
     def authByAuthKey(self, authKeyId, authKey):
-        pass
+        reqObj = {'authKeyId': authKeyId, 'authKey': authKey}
+        reqDoc = json.dumps(reqObj).encode('utf-8')
+        self.authRequest(reqDoc)
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         # Root Account
@@ -59,7 +67,7 @@ class soraman():
 
 class global_soraman(soraman):
     def __init__(self):
-        self.API_ENDPOINT = ''
+        self.API_ENDPOINT = 'https://g.api.soracom.io'
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         super().auth(email, password, authKeyId, authKey, operatorId, userName)
@@ -69,7 +77,7 @@ class global_soraman(soraman):
 
 class japan_soraman(soraman):
     def __init__(self):
-        self.API_ENDPOINT = ''
+        self.API_ENDPOINT = 'https://jpn.api.soracom.io'
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         super().auth(email, password, authKeyId, authKey, operatorId, userName)
