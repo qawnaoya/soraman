@@ -1,5 +1,6 @@
 import logging
 import urllib.request
+import urllib.error
 import json
 from soraman import exception
 
@@ -21,9 +22,14 @@ class soraman():
             'Content-Type': 'application/json',
         }
 
-        u = urllib.request.Request(uri, reqDoc, headers, method = 'POST')
-        with urllib.request.urlopen(u) as f:
-            print(f.read())
+        try:
+            u = urllib.request.Request(uri, reqDoc, headers, method = 'POST')
+            with urllib.request.urlopen(u) as f:
+                print(f.read())
+        except urllib.error.HTTPError as ex:
+            print(ex)
+            print(ex.filename)
+            raise(ex)
 
     ''' ルートアカウントの認証を実装 '''
 
