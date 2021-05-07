@@ -1,5 +1,6 @@
 import unittest
 from soraman import auth
+import configparser as cp
 
 class GlobalAuthTest(unittest.TestCase):
 
