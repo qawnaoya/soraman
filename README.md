@@ -5,3 +5,9 @@
 
 * japan_soraman
 * global_soraman
+
+### Functions
+
+* auth
+* getSubscribers
+* getGroups
