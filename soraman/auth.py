@@ -16,7 +16,12 @@ class soraman():
     def authRequest(self, reqDoc):
         uri = self.API_ENDPOINT + '/auth'
         self.logger.info('Request URI: %s', uri)
-        u = urllib.request.Request(uri, data = reqDoc, method = 'POST')
+        
+        headers = {
+            'Content-Type': 'application/json',
+        }
+
+        u = urllib.request.Request(uri, reqDoc, headers, method = 'POST')
         with urllib.request.urlopen(u) as f:
             print(f.read())
 
