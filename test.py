@@ -29,5 +29,11 @@ class GlobalAuthTest(unittest.TestCase):
         soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
         print(soraman.getSubscribers())
 
+    def test_getgroups(self):
+        soraman = auth.japan_soraman()
+
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
+        print(soraman.getGroups())
+
 if __name__ == "__main__":
     unittest.main()

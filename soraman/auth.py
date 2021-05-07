@@ -113,6 +113,27 @@ class soraman():
             print(ex.read())
             raise(ex)
 
+    def getGroups(self):
+        uri = self.API_ENDPOINT + '/v1/groups'
+        self.logger.info('Request URI: %s', uri)
+        
+        headers = {
+            'X-Soracom-API-Key': self.sessionInfo['apiKey'],
+            'X-Soracom-Token': self.sessionInfo['token']
+        }
+
+        try:
+            u = urllib.request.Request(uri, headers=headers, method='GET')
+            with urllib.request.urlopen(u) as f:
+                resDoc = f.read()
+                resObj = json.loads(resDoc.decode('utf-8'))
+                self.sessionInfo = resObj
+                return(resObj)
+
+        except urllib.error.HTTPError as ex:
+            print(ex.read())
+            raise(ex)
+
 
 ''' Global カバレッジの認証を実装
 '''
