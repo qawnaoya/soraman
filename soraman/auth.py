@@ -96,7 +96,7 @@ class global_soraman(soraman):
 class japan_soraman(soraman):
     def __init__(self):
         super().__init__()
-        self.API_ENDPOINT = 'https://jpn.api.soracom.io'
+        self.API_ENDPOINT = 'https://api.soracom.io'
 
     def auth(self, email = None, password = None, authKeyId = None, authKey = None, operatorId = None, userName = None):
         super().auth(email, password, authKeyId, authKey, operatorId, userName)

@@ -10,7 +10,7 @@ class GlobalAuthTest(unittest.TestCase):
     authKey = config['soracom']['authKey']
 
     def test_except(self):
-        soraman = auth.global_soraman()
+        soraman = auth.japan_soraman()
 
         try:
             soraman.auth(authKeyId=self.authKeyId)
@@ -19,7 +19,7 @@ class GlobalAuthTest(unittest.TestCase):
             pass
 
     def test_auth(self):
-        soraman = auth.global_soraman()
+        soraman = auth.japan_soraman()
 
         soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
 
