@@ -156,6 +156,11 @@ class soraman():
         except urllib.error.HTTPError as ex:
             print(ex.read())
             raise(ex)
+    
+    def getGroupIdsByName(self, name):
+        groups = self.getGroupsByName(name)
+
+        return [g['groupId'] for g in groups]
 
     def getSoracomBeamConfigurationByName(self, name, configuration_name):
         groups = self.getGroupsByName(name)

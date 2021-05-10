@@ -2,7 +2,6 @@ import unittest
 from soraman import client
 from soraman import exception
 import configparser as cp
-import pandas as pd
 
 class GlobalAuthTest(unittest.TestCase):
     config = cp.ConfigParser()
@@ -32,11 +31,6 @@ class GlobalAuthTest(unittest.TestCase):
 
         print(g)
 
-        gd = [pd.DataFrame(m) for m in g]
-        gd = pd.concat(gd)
-
-        print(gd)
-
     def test_getgroups(self):
         soraman = client.japan_soraman()
 
@@ -45,11 +39,6 @@ class GlobalAuthTest(unittest.TestCase):
 
         print(g)
 
-        gd = [pd.DataFrame(m) for m in g]
-        gd = pd.concat(gd)
-
-        print(gd)
-
     def test_getgroupsByName(self):
         soraman = client.japan_soraman()
 
@@ -57,27 +46,14 @@ class GlobalAuthTest(unittest.TestCase):
         g = soraman.getGroupsByName('SIMG')
 
         print(g)
-
-        gd = [pd.DataFrame(m) for m in g]
-        gd = pd.concat(gd)
-
-        print(gd)
     
-    def test_getgroupConfigurationByName(self):
+    def test_getGroupIdsByName(self):
         soraman = client.japan_soraman()
 
         soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
-        
-        sorahttp = soraman.getSoracomBeamConfigurationByName('SIMG', 'http://beam.soracom.io:8888/iothub')
-        print(sorahttp)
+        g = soraman.getGroupIdsByName('SIMG')
 
-    def test_getgroupConfigurationByName1(self):
-        soraman = client.japan_soraman()
-
-        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
-        
-        sorahttp = soraman.getConfigurationByName('SIMG', 'SoracomBeam')
-        print(sorahttp)
+        print(g)
 
 if __name__ == "__main__":
     unittest.main()
