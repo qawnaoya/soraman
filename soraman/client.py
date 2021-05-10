@@ -180,17 +180,6 @@ class soraman():
 
         return [g['groupId'] for g in groups]
 
-    def getSoracomBeamConfigurationByName(self, name, configuration_name):
-        groups = self.getGroupsByName(name)
-
-        group = groups[0]
-
-        configuration = group['configuration']
-        soracom_beam = configuration['SoracomBeam']
-        beam_configuration = soracom_beam[configuration_name]
-
-        return beam_configuration
-
     def getConfigurationById(self, id, configuration_name):
         group = self.getGroupById(id)
 
@@ -198,6 +187,13 @@ class soraman():
         soracom_beam = configuration[configuration_name]
 
         return soracom_beam
+
+    def getSoracomBeamConfigurationById(self, id, configuration_name):
+
+        soracom_beam = self.getConfigurationById(id, 'SoracomBeam')
+        beam_configuration = soracom_beam[configuration_name]
+
+        return beam_configuration
 
 
 ''' Global カバレッジの認証を実装

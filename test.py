@@ -76,5 +76,16 @@ class GlobalAuthTest(unittest.TestCase):
         g = soraman.getConfigurationById(gn, 'SoracomBeam')
         print(g)
 
+    def test_getSoracomBeamConfigurationByName(self):
+        soraman = client.japan_soraman()
+
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
+        g = soraman.getGroupIdsByName('SIMG')
+
+        gn = g[0]
+
+        g = soraman.getSoracomBeamConfigurationById(gn, 'http://beam.soracom.io:8888/iothub')
+        print(g)
+
 if __name__ == "__main__":
     unittest.main()
