@@ -133,6 +133,50 @@ class soraman():
         except urllib.error.HTTPError as ex:
             print(ex.read())
             raise(ex)
+    
+    def getGroupsByName(self, name):
+        uri = self.API_ENDPOINT + '/v1/groups?tag_name={0}&tag_value={1}'
+        uri = uri.format('name', name)
+
+        self.logger.info('Request URI: %s', uri)
+
+        headers = {
+            'X-Soracom-API-Key': self.sessionInfo['apiKey'],
+            'X-Soracom-Token': self.sessionInfo['token']
+        }
+
+        try:
+            u = urllib.request.Request(uri, headers=headers, method='GET')
+            with urllib.request.urlopen(u) as f:
+                resDoc = f.read()
+                resObj = json.loads(resDoc.decode('utf-8'))
+                self.sessionInfo = resObj
+                return(resObj)
+
+        except urllib.error.HTTPError as ex:
+            print(ex.read())
+            raise(ex)
+
+    def getSoracomBeamConfigurationByName(self, name, configuration_name):
+        groups = self.getGroupsByName(name)
+
+        group = groups[0]
+
+        configuration = group['configuration']
+        soracom_beam = configuration['SoracomBeam']
+        beam_configuration = soracom_beam[configuration_name]
+
+        return beam_configuration
+
+    def getConfigurationByName(self, name, configuration_name):
+        groups = self.getGroupsByName(name)
+
+        group = groups[0]
+
+        configuration = group['configuration']
+        soracom_beam = configuration[configuration_name]
+
+        return soracom_beam
 
 
 ''' Global カバレッジの認証を実装
