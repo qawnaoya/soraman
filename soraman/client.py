@@ -191,10 +191,8 @@ class soraman():
 
         return beam_configuration
 
-    def getConfigurationByName(self, name, configuration_name):
-        groups = self.getGroupsByName(name)
-
-        group = groups[0]
+    def getConfigurationById(self, id, configuration_name):
+        group = self.getGroupById(id)
 
         configuration = group['configuration']
         soracom_beam = configuration[configuration_name]
