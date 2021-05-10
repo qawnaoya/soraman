@@ -54,6 +54,16 @@ class GlobalAuthTest(unittest.TestCase):
         g = soraman.getGroupIdsByName('SIMG')
 
         print(g)
+    
+    def test_getGroupByName(self):
+        soraman = client.japan_soraman()
+
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
+        g = soraman.getGroupIdsByName('SIMG')
+
+        gn = g[0]
+
+        g = soraman.getGroupById(gn)
 
 if __name__ == "__main__":
     unittest.main()
