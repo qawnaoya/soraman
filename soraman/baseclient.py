@@ -4,7 +4,7 @@ import urllib.error
 import json
 from soraman import utility, exception
 
-''' カバレッジタイプに依存しない認証を実装
+''' カバレッジタイプに依存しないクライアントを実装
 '''
 
 class soraman():
@@ -15,6 +15,9 @@ class soraman():
     def __init__(self):
         self.logger = logging.getLogger(__name__)
 
+    '''
+    認証リクエストを送信
+    '''
     def authRequest(self, reqDoc):
         uri = self.API_ENDPOINT + '/v1/auth'
         self.logger.info('Request URI: %s', uri)
