@@ -188,3 +188,22 @@ class soraman():
         beam_configuration = soracom_beam[configuration_name]
 
         return beam_configuration
+
+    def putConfigurationById(self, id, configuration_name, configuration):
+        uri = self.API_ENDPOINT + '/v1/groups/{0}/configuration/{1}'
+        uri = uri.format(id, configuration_name)
+        self.logger.info('Request URI: %s', uri)
+
+        headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
+        payload = json.dumps(configuration).encode('utf-8')
+
+        try:
+            u = urllib.request.Request(uri, data=payload, headers=headers, method='PUT')
+            with urllib.request.urlopen(u) as f:
+                resDoc = f.read()
+                resObj = json.loads(resDoc.decode('utf-8'))
+                return(resObj)
+
+        except urllib.error.HTTPError as ex:
+            print(ex.read())
+            raise(ex)
