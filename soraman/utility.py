@@ -10,6 +10,7 @@ def build_Beam_MQTT_configuration(
     enabled = True,
     addEquipmentHeader = False,
     addSignature = False,
+    addSubscriberHeader = False,
     addSimIdHeader = False,
     customHeaders = {},
     skipStatusCode = False,
@@ -27,6 +28,7 @@ def build_Beam_MQTT_configuration(
     value['name'] = 'MQTT'
     value['addEquipmentHeader'] = addEquipmentHeader
     value['addSignature'] = addSignature
+    value['addSubscriberHeader'] = addSubscriberHeader
     value['addSimIdHeader'] = addSimIdHeader
     value['customHeaders'] = customHeaders
     value['skipStatusCode'] = skipStatusCode
@@ -43,6 +45,7 @@ def build_Beam_HTTP_configuration(
     enabled = True,
     addEquipmentHeader = False,
     addSignature = False,
+    addSubscriberHeader = False,
     addSimIdHeader = False,
     customHeaders = {},
     skipStatusCode = False,
@@ -61,6 +64,7 @@ def build_Beam_HTTP_configuration(
     value['name'] = 'MQTT'
     value['addEquipmentHeader'] = addEquipmentHeader
     value['addSignature'] = addSignature
+    value['addSubscriberHeader'] = addSubscriberHeader
     value['addSimIdHeader'] = addSimIdHeader
     value['addMsisdnHeader'] = addSimIdHeader
     value['psk'] = psk
