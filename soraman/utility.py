@@ -7,6 +7,7 @@ def build_header(apiKey, token):
     return headers
 
 def build_Beam_MQTT_configuration(
+    destination,
     enabled = True,
     addEquipmentHeader = False,
     addSignature = False,
@@ -35,6 +36,7 @@ def build_Beam_MQTT_configuration(
     value['useClientCert'] = useClientCert
     value['useAzureIoT'] = useAzureIoT
     value['azureIoTCentral'] = azureIoTCentral
+    value['destination'] = destination
     configuration['value'] = value
 
     return  configuration
