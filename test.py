@@ -1,4 +1,5 @@
 import unittest
+from soraman import baseclient
 from soraman import client
 from soraman import exception
 import configparser as cp
