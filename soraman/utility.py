@@ -49,6 +49,7 @@ def build_Beam_HTTP_configuration(
     addSignature = False,
     addSubscriberHeader = False,
     addSimIdHeader = False,
+    addMsisdnHeader = False,
     customHeaders = {},
     skipStatusCode = False,
     useClientCert = False,
@@ -68,7 +69,7 @@ def build_Beam_HTTP_configuration(
     value['addSignature'] = addSignature
     value['addSubscriberHeader'] = addSubscriberHeader
     value['addSimIdHeader'] = addSimIdHeader
-    value['addMsisdnHeader'] = addSimIdHeader
+    value['addMsisdnHeader'] = addMsisdnHeader
     value['psk'] = psk
     value['customHeaders'] = customHeaders
     value['skipStatusCode'] = skipStatusCode
