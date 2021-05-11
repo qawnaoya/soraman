@@ -2,7 +2,7 @@ import logging
 import urllib.request
 import urllib.error
 import json
-from soraman import exception
+from soraman import utility, exception
 
 ''' カバレッジタイプに依存しない認証を実装
 '''
@@ -96,10 +96,7 @@ class soraman():
         uri = self.API_ENDPOINT + '/v1/subscribers'
         self.logger.info('Request URI: %s', uri)
         
-        headers = {
-            'X-Soracom-API-Key': self.sessionInfo['apiKey'],
-            'X-Soracom-Token': self.sessionInfo['token']
-        }
+        headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
 
         try:
             u = urllib.request.Request(uri, headers=headers, method='GET')
@@ -136,11 +133,8 @@ class soraman():
         uri = self.API_ENDPOINT + '/v1/groups/{0}'
         uri = uri.format(id)
         self.logger.info('Request URI: %s', uri)
-        
-        headers = {
-            'X-Soracom-API-Key': self.sessionInfo['apiKey'],
-            'X-Soracom-Token': self.sessionInfo['token']
-        }
+
+        headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
 
         try:
             u = urllib.request.Request(uri, headers=headers, method='GET')
@@ -159,10 +153,7 @@ class soraman():
 
         self.logger.info('Request URI: %s', uri)
 
-        headers = {
-            'X-Soracom-API-Key': self.sessionInfo['apiKey'],
-            'X-Soracom-Token': self.sessionInfo['token']
-        }
+        headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
 
         try:
             u = urllib.request.Request(uri, headers=headers, method='GET')
