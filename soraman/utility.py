@@ -39,6 +39,7 @@ def build_Beam_MQTT_configuration(
 
 def build_Beam_HTTP_configuration(
     path,
+    destination,
     enabled = True,
     addEquipmentHeader = False,
     addSignature = False,
@@ -46,8 +47,9 @@ def build_Beam_HTTP_configuration(
     customHeaders = {},
     skipStatusCode = False,
     useClientCert = False,
-    useAzureIoT = False,
-    azureIoTCentral = {
+    useClientCredentials = False,
+    replaceTopic = False,
+    psk = {
         '$credentialsId': 'AzureIoT'
     }
 ):
@@ -60,16 +62,26 @@ def build_Beam_HTTP_configuration(
     value['addEquipmentHeader'] = addEquipmentHeader
     value['addSignature'] = addSignature
     value['addSimIdHeader'] = addSimIdHeader
+    value['addMsisdnHeader'] = addSimIdHeader
+    value['psk'] = psk
     value['customHeaders'] = customHeaders
     value['skipStatusCode'] = skipStatusCode
     value['useClientCert'] = useClientCert
-    value['useAzureIoT'] = useAzureIoT
-    value['azureIoTCentral'] = azureIoTCentral
+    value['useClientCredentials'] = useClientCredentials
+    value['destination'] = destination
+    value['replaceTopic'] = replaceTopic
     configuration['value'] = value
 
     return  configuration
 
 def build_AzureIoTCentral(cert):
+    azureIoTCentral = {
+        '$credentialsId': cert
+    }
+
+    return azureIoTCentral
+
+def build_PresharedKey(cert):
     azureIoTCentral = {
         '$credentialsId': cert
     }
