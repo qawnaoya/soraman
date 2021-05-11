@@ -2,10 +2,11 @@
 ## Yet Another SORACOM API binding
 
 ### Includes
-baseclinet: base client module
-client: client module
-exception: exception module
-utility: utility module
+
+* baseclinet: base client module
+* client: client module
+* exception: exception module
+* utility: utility module
 
 ### Objects
 
