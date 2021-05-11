@@ -68,3 +68,10 @@ def build_Beam_HTTP_configuration(
     configuration['value'] = value
 
     return  configuration
+
+def build_AzureIoTCentral(cert):
+    azureIoTCentral = {
+        '$credentialsId': cert
+    }
+
+    return azureIoTCentral
