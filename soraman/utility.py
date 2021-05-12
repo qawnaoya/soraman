@@ -61,10 +61,10 @@ def build_Beam_HTTP_configuration(
 ):
     configuration = {}
 
-    configuration['key'] = 'mqtt://beam.soracom.io:8888/{0}'.format(path)
+    configuration['key'] = 'http://beam.soracom.io:8888/{0}'.format(path)
     value = {}
     value['enabled'] = enabled
-    value['name'] = 'MQTT'
+    value['name'] = 'HTTP'
     value['addEquipmentHeader'] = addEquipmentHeader
     value['addSignature'] = addSignature
     value['addSubscriberHeader'] = addSubscriberHeader

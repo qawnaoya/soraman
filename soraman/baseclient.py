@@ -132,9 +132,9 @@ class soraman():
             print(ex.read())
             raise(ex)
 
-    def getGroupById(self, id):
+    def getGroupById(self, group_id):
         uri = self.API_ENDPOINT + '/v1/groups/{0}'
-        uri = uri.format(id)
+        uri = uri.format(group_id)
         self.logger.info('Request URI: %s', uri)
 
         headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
@@ -174,28 +174,31 @@ class soraman():
 
         return [g['groupId'] for g in groups]
 
-    def getConfigurationById(self, id, configuration_name):
-        group = self.getGroupById(id)
+    def getConfigurationById(self, group_id, configuration_name):
+        group = self.getGroupById(group_id)
 
         configuration = group['configuration']
         soracom_beam = configuration[configuration_name]
 
         return soracom_beam
 
-    def getSoracomBeamConfigurationById(self, id, configuration_name):
+    def getSoracomBeamConfigurationById(self, group_id, configuration_name):
 
-        soracom_beam = self.getConfigurationById(id, 'SoracomBeam')
+        soracom_beam = self.getConfigurationById(group_id, 'SoracomBeam')
         beam_configuration = soracom_beam[configuration_name]
 
         return beam_configuration
 
-    def putConfigurationById(self, id, configuration_name, configuration):
+    def putConfigurationById(self, group_id, configuration_name, configuration):
         uri = self.API_ENDPOINT + '/v1/groups/{0}/configuration/{1}'
-        uri = uri.format(id, configuration_name)
+        uri = uri.format(group_id, configuration_name)
         self.logger.info('Request URI: %s', uri)
 
         headers = utility.build_header(self.sessionInfo['apiKey'], self.sessionInfo['token'])
+        headers['Content-Type'] = 'application/json'
         payload = json.dumps(configuration).encode('utf-8')
+
+        print(payload)
 
         try:
             u = urllib.request.Request(uri, data=payload, headers=headers, method='PUT')

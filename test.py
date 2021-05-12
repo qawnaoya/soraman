@@ -2,6 +2,7 @@ import unittest
 from soraman import baseclient
 from soraman import client
 from soraman import exception
+from soraman import utility
 import configparser as cp
 
 class GlobalAuthTest(unittest.TestCase):
@@ -87,6 +88,23 @@ class GlobalAuthTest(unittest.TestCase):
 
         g = soraman.getSoracomBeamConfigurationById(gn, 'http://beam.soracom.io:8888/iothub')
         print(g)
+
+    def test_putConfiguration(self):
+        soraman = client.japan_soraman()
+
+        soraman.auth(authKeyId=self.authKeyId,authKey=self.authKey)
+        g = soraman.getGroupIdsByName('SIMG')
+
+        gn = g[0]
+
+        azic = utility.build_AzureIoTCentral('AzureIoT')
+        mqtt = utility.build_Beam_MQTT_configuration(destination='mqtts://IPRHUB.azure-devices.net:8883', addSubscriberHeader = True, customHeaders= {}, useAzureIoT=True, azureIoTCentral=azic)
+        psk = utility.build_PresharedKey('M5TESTX')
+        http = utility.build_Beam_HTTP_configuration('iothub', destination='https://IPRHUB.azure-devices.net/devices/M5TEST/messages/events?api-version=2018-06-30', enabled=True, addEquipmentHeader=True, addSignature=True, addSubscriberHeader=True, addSimIdHeader=False, addMsisdnHeader=True, psk = psk, replaceTopic=False)
+        configurations = [mqtt, http]
+
+        g = soraman.putConfigurationById(gn, 'SoracomBeam', configurations)
+        print("Result", g)
 
 if __name__ == "__main__":
     unittest.main()
