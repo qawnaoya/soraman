@@ -1,3 +1,4 @@
+'''ヘッダ生成'''
 def build_header(apiKey, token):
     headers = {
         'X-Soracom-API-Key': apiKey,
@@ -6,6 +7,7 @@ def build_header(apiKey, token):
 
     return headers
 
+'''MQTT 設定'''
 def build_Beam_MQTT_configuration(
     destination,
     enabled = True,
